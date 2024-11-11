@@ -1,0 +1,27 @@
+<div class="login">
+  <div class="card shadow-lg p-4 login-div">
+    <div class="card-body">
+      <h2 class="titulo text-center mb-4">Login</h2>
+
+      <form (ngSubmit)="login()" id="loginForm">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control text-bg-light" id="floatingInput" placeholder="Correo o usuario" 
+                 [ngModelOptions]="{standalone:true}" [(ngModel)]="usuario.correo" required>
+          <label for="floatingInput">Correo o usuario</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control text-bg-light" id="floatingPassword" placeholder="Password"
+                 [ngModelOptions]="{standalone:true}" [(ngModel)]="usuario.password" required>
+          <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="d-grid mb-3">
+          <button class="btn btn-ingresar text-bg-primary" type="submit">Ingresar</button>
+        </div>
+      </form>
+
+      <hr>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="container">
+  <h1>Ingredientes</h1>
+
+  <form (ngSubmit)="guardarIngrediente()">
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" [(ngModel)]="ingrediente.nombre" name="nombre" required>
+    </div>
+    <div>
+      <label for="cantidad">Cantidad:</label>
+      <input type="text" id="cantidad" [(ngModel)]="ingrediente.cantidad" name="cantidad" required>
+    </div>
+    <button type="submit">Guardar Ingrediente</button>
+
+    
+  </form>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <table *ngIf="ingredientes.length > 0">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ingrediente of ingredientes">
+        <td>{{ ingrediente.nombre }}</td>
+        <td>{{ ingrediente.cantidad }}</td>
+        <td>
+          <button (click)="borrarIngrediente(ingrediente.idingrediente)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<a href="welcome">
+  <button class="button">Atras</button>
+</a>

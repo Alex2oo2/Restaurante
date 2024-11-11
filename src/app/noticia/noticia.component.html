@@ -1,0 +1,55 @@
+<p>Noticias</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Título</th>
+      <th>Descripción</th>
+      <th>Fecha</th>
+      <th>Foto</th>
+      <th>Tipo de Noticia</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let noticia of noticias">
+      <td>{{ noticia.idnoticia }}</td>
+      <td>{{ noticia.titulo }}</td>
+      <td>{{ noticia.descripcion }}</td>
+      <td>{{ noticia.fechaPublicacion | date : "yyyy-MM-dd HH:mm:ss" }}</td>
+      <td>
+        <img *ngIf="noticia.foto" [src]="noticia.foto" alt="Imagen de noticia" width="100" />
+        <span *ngIf="!noticia.foto">Sin foto</span>
+      </td>
+      <td>{{ noticia.tipo | tipoNoticia }}</td> <!-- Aquí se aplica el pipe -->
+      <td>
+        <button (click)="editarNoticia(noticia)">Editar</button>
+        <input type="submit" class="imagen-boton" value="🗑️" (click)="borrarNoticia(noticia.idnoticia)" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<!-- Formulario para agregar/actualizar noticia -->
+<div>
+  <h3>{{ nuevaNoticia.idnoticia ? 'Actualizar Noticia' : 'Nueva Noticia' }}</h3>
+  <input type="text" [(ngModel)]="nuevaNoticia.titulo" placeholder="Título" />
+  <input type="text" [(ngModel)]="nuevaNoticia.descripcion" placeholder="Descripción" />
+  
+  <!-- Combo para seleccionar el tipo de noticia -->
+  <select [(ngModel)]="nuevaNoticia.tipo" placeholder="Tipo">
+    <option value="">Seleccione el tipo</option>
+    <option value="Promocion">Promoción</option>
+    <option value="Administracion">Administración</option>
+  </select>
+
+  <input type="file" (change)="onFileSelected($event)" />
+  <input type="submit" value="{{ nuevaNoticia.idnoticia ? 'Actualizar' : 'Guardar' }}" (click)="nuevaNoticia.idnoticia ? actualizarNoticia() : guardarNoticia()" />
+</div>
+
+<a href="welcome">
+  <button class="button">Atrás</button>
+</a>

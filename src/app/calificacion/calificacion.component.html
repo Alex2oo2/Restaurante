@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>Calificaciones</h1>
+  
+  <form (ngSubmit)="guardarCalificacion()">
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" [(ngModel)]="calificacion.nombre" name="nombre" required>
+    </div>
+    <div>
+      <label for="nota">Nota:</label>
+      <input type="number" id="nota" [(ngModel)]="calificacion.nota" name="nota" required>
+    </div>
+    <div>
+      <label for="noExamen">Número de Examen:</label>
+      <input type="number" id="noExamen" [(ngModel)]="calificacion.noExamen" name="noExamen" required>
+    </div>
+    <button type="submit">Guardar Calificación</button>
+  </form>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <table *ngIf="calificaciones.length > 0">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Nota</th>
+        <th>Número de Examen</th>
+        <th>Fecha de Calificación</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let calificacion of calificaciones">
+        <td>{{ calificacion.nombre }}</td>
+        <td>{{ calificacion.nota }}</td>
+        <td>{{ calificacion.noExamen }}</td>
+        <td>{{ calificacion.fechaCalificacion }}</td>
+        <td>
+          <button (click)="borrarCalificacion(calificacion.idcalificacion)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<a href="welcome">
+  <button class="button">Atras</button>
+</a>
